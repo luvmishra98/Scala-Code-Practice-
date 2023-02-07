@@ -1,33 +1,51 @@
+
+
+
+
 import scala.io.StdIn._;
-class Queue(size:Int) {
+class Queue1(size:Int) {
 
   var start: Int = 0;
   var end: Int = 0;
   var capacity: Int = size;
-  var queue: Array[Int] = new Array[Int](capacity);
+  var queue: Array[String] = new Array[String](capacity);
+  var balance: Array[Int] = new Array[Int](capacity);
 
 
-  def enQueue(value: Int): Unit = {
+  def enQueue(value: String,bal:Int=0): Unit = {
     if (capacity == end) {
       print("Queue is already full !!!");
       //return 0;
     } else {
       queue(end) = value;
+      balance(end)=bal;
       end = end + 1;
     }
   }
 
+  def isEmpty(): Unit ={
+    if (start == end) {
+      print("Queue is empty!!!");
+    }else{
+      print("Its not empty!!!");
+    }
+  }
 
+  def size(): Int ={
+    return capacity;
+  }
   def deQueue(): Unit = {
 
     if (start == end) {
       print("Queue is empty!!!");
     } else {
       for (i <- 0 to (end - 1)) {
+        balance(i)=balance(i+1);
         queue(i) = queue(i + 1);
       }
       if (end < capacity) {
-        queue(end) = 0;
+        queue(end) = "";
+        balance(end)=0;
       }
       end = end - 1;
       //return
@@ -43,11 +61,11 @@ class Queue(size:Int) {
     }
     else{
       println("the value in queue contains:");
-    for (i <- start to (end-1)) {
+      for (i <- start to (end-1)) {
 
-      print(queue(i)+"  ")
-    }
-    println();
+        println("Customer Name:"+queue(i)+" Current Balance "+balance(i));
+      }
+      println();
     }
 
 
@@ -55,59 +73,68 @@ class Queue(size:Int) {
 }
 
 
-object QueueImplementation {
-
-
-
+object PeopleQueue{
 
   def main(args:Array[String]):Unit={
-  var size:Int=readLine("Enter the size of Queue:").toInt;
+
+    var name=readLine("Enter your name please:->");
+    var size:Int=readLine("Enter the size of Queue:->").toInt;
 
 
-  var obj=new Queue(size);
-  var choice:Int=0;
-  while(choice!=1) {
-  println("Enter 1 for EnQueue \n 2 For Dequeue \n 3 For Print \n 4 For Exit from the program");
-    var userChoice:Int=readInt();
-    userChoice match {
-      case 1 =>{
-        println("Enter the Data to be inserted in Queue :");
-        var data:Int=readInt();
-        obj.enQueue(data);
-      }
-      case 2=>{
-        obj.deQueue();
+    var obj=new Queue1(size);
 
-      }
-      case 3=>{
-        obj.printQueue();
-      }
-      case 4=>{
-        println("Enter 1 to exit :");
-        choice=readInt();
-//        break;
-      }
-      case _=>{
-        print("Hey it's wrong choice");
+    var choice:Int=0;
+    while(choice!=1) {
+      println("\n*******************\nHello,"+name+"!!! Please choose one of below\n 1 for EnQueue \n 2 For Dequeue \n 3 For Print \n 4 For Exit from the program \n 5 To Check if Queue is empty \n 6 To Know the Size");
+      var userChoice:Int=readInt();
+      userChoice match {
+        case 1 =>{
+          println("Enter the Customer Name and Current Balance of Customer :");
+//          var data:Int=readInt();
+          var data=readLine();
+          var current_balance=readInt();
+          obj.enQueue(data,current_balance);
+        }
+        case 2=>{
+          obj.deQueue();
+
+        }
+        case 3=>{
+          obj.printQueue();
+        }
+        case 4=>{
+          println("Enter 1 to exit :");
+          choice=readInt();
+          //        break;
+        }case 5=>{
+          obj.isEmpty();
+        }case 6=>{
+          println("The Size of Queue is :"+obj.size());
+        }
+        case _=>{
+          print("Hey it's wrong choice");
+        }
+
+
+
+          println("Thank you !!!");
       }
 
-        println("Thank you !!!");
+
+      //obj.isEmpty();
+      //print(obj.size());
+      //    var obj=new Queue(5);
+      //    obj.printQueue();
+      //    obj.enQueue(5);
+      //    obj.enQueue(10);
+      //    obj.enQueue(16);
+      //    obj.printQueue();
+      //    obj.deQueue();
+      //    obj.deQueue();
+      //    println();
+      //    obj.printQueue();
+
     }
-
-
-
-//    var obj=new Queue(5);
-//    obj.printQueue();
-//    obj.enQueue(5);
-//    obj.enQueue(10);
-//    obj.enQueue(16);
-//    obj.printQueue();
-//    obj.deQueue();
-//    obj.deQueue();
-//    println();
-//    obj.printQueue();
-
-  }
   }
 
 }
