@@ -1,0 +1,113 @@
+import scala.io.StdIn._;
+class Queue(size:Int) {
+
+  var start: Int = 0;
+  var end: Int = 0;
+  var capacity: Int = size;
+  var queue: Array[Int] = new Array[Int](capacity);
+
+
+  def enQueue(value: Int): Unit = {
+    if (capacity == end) {
+      print("Queue is already full !!!");
+      //return 0;
+    } else {
+      queue(end) = value;
+      end = end + 1;
+    }
+  }
+
+
+  def deQueue(): Unit = {
+
+    if (start == end) {
+      print("Queue is empty!!!");
+    } else {
+      for (i <- 0 to (end - 1)) {
+        queue(i) = queue(i + 1);
+      }
+      if (end < capacity) {
+        queue(end) = 0;
+      }
+      end = end - 1;
+      //return
+    }
+  }
+
+
+  def printQueue(): Unit = {
+    if (start == end) {
+
+      print("Queue is empty");
+      //return;
+    }
+    else{
+      println("the value in queue contains:");
+    for (i <- start to (end-1)) {
+
+      print(queue(i)+"  ")
+    }
+    println();
+    }
+
+
+  }
+}
+
+
+object QueueImplementation {
+
+
+
+
+  def main(args:Array[String]):Unit={
+  var size:Int=readLine("Enter the size of Queue:").toInt;
+
+
+  var obj=new Queue(size);
+  var choice:Int=0;
+  while(choice!=1) {
+  println("Enter 1 for EnQueue \n 2 For Dequeue \n 3 For Print \n 4 For Exit from the program");
+    var userChoice:Int=readInt();
+    userChoice match {
+      case 1 =>{
+        println("Enter the Data to be inserted in Queue :");
+        var data:Int=readInt();
+        obj.enQueue(data);
+      }
+      case 2=>{
+        obj.deQueue();
+
+      }
+      case 3=>{
+        obj.printQueue();
+      }
+      case 4=>{
+        println("Enter 1 to exit :");
+        choice=readInt();
+//        break;
+      }
+      case _=>{
+        print("Hey it's wrong choice");
+      }
+
+        println("Thank you !!!");
+    }
+
+
+
+//    var obj=new Queue(5);
+//    obj.printQueue();
+//    obj.enQueue(5);
+//    obj.enQueue(10);
+//    obj.enQueue(16);
+//    obj.printQueue();
+//    obj.deQueue();
+//    obj.deQueue();
+//    println();
+//    obj.printQueue();
+
+  }
+  }
+
+}
