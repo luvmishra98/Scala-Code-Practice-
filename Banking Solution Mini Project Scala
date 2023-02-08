@@ -1,0 +1,227 @@
+import java.beans.Customizer
+
+
+import scala.io.StdIn._;
+import scala.util.control._;
+
+class Customer_bank(p_name:String,p_bal:Int){
+  var name:String=p_name;
+  var bal:Int=p_bal;
+
+  def display(): Unit ={
+
+    println("Customer Name:"+name+"   Current Balance :"+bal);
+
+  }
+
+
+
+
+
+}
+
+
+
+
+class Queue1(size:Int) {
+
+  var start: Int = 0;
+  var end: Int = 0;
+  var capacity: Int = size;
+//  var queue: Array[String] = new Array[String](capacity);
+//  var balance: Array[Int] = new Array[Int](capacity);
+
+  var myQueue:Array[Customer_bank]=new Array[Customer_bank](capacity);
+
+
+
+
+  def enQueue(value: String,bal:Int): Unit = {
+    if (capacity == end) {
+      print("Queue is already full !!!");
+      //return 0;
+    } else {
+
+
+      myQueue(end)=new Customer_bank(value,bal);
+
+//      queue(end) = value;
+//      balance(end)=bal;
+      end = end + 1;
+    }
+  }
+
+  def isEmpty(): Unit ={
+    if (start == end) {
+      print("Queue is empty!!!");
+    }else{
+      print("Its not empty!!!");
+    }
+  }
+
+  def size(): Int ={
+    return end;
+  }
+  def deQueue(): Unit = {
+
+    if (start == end) {
+      print("Queue is empty!!!");
+    } else {
+      for (i <- 0 to (end - 1)) {
+//        balance(i)=balance(i+1);
+//        queue(i) = queue(i + 1);
+
+        myQueue(i)=myQueue(i+1);
+
+
+      }
+      if (end < capacity) {
+//        queue(end) = "";
+//        balance(end)=0;
+
+        myQueue(end)=new Customer_bank("",0);
+      }
+      end = end - 1;
+      //return
+    }
+  }
+
+
+
+  def withdraw_fun(getData:String): Unit ={
+    val loop=new Breaks;
+
+    loop.breakable{
+    for (i<-0 to (capacity-1)){
+      if(myQueue(i).name==getData) {
+
+        println("What do you want to do?\n 1 For Deposit\n 2 For Withdraw");
+        var temp: Int = readInt();
+        temp match {
+
+          case 1 => {
+            println("Enter amount to be Deposit :");
+            var amount1: Int = readInt();
+            myQueue(i).bal = myQueue(i).bal + amount1;
+            loop.break;
+
+          }
+          case 2 => {
+            println("Enter amount to be withdrawn :");
+            var amount2: Int = readInt();
+            myQueue(i).bal = myQueue(i).bal - amount2;
+            loop.break;
+
+          }
+          case _ => {
+            println("Invalid Input !!!");
+          }
+
+        }
+      }
+
+
+
+
+
+
+
+
+      }
+
+
+    }
+
+
+
+  }
+
+  def printQueue(): Unit = {
+    if (start == end) {
+
+      print("Queue is empty");
+      //return;
+    }
+    else{
+      println("the value in queue contains:");
+      for (i <- start to (end-1)) {
+
+
+        myQueue(i).display();
+//        println("Customer Name:"+myQueue(i)."  "+"Current Balance :"+myQueue(i).bal);
+      }
+      println();
+    }
+
+
+  }
+}
+
+
+//object PeopleQueue{
+
+
+
+object ExperimentScala {
+
+
+
+
+
+
+
+  def main(args:Array[String]):Unit= {
+
+    var name = readLine("Enter your name please:->");
+    var size: Int = readLine("Enter the size of Queue:->").toInt;
+
+
+    var obj = new Queue1(size);
+    var choice: Int = 0;
+    while (choice != 1) {
+      println("\n*******************\nHello," + name + "!!! Please choose one of below\n 1 Enter the Customer Data (EnQueue) \n 2 Delete Customer Data (Dequeue) \n 3 To bring All Customer Details(Print) \n 4 Exit from the program \n 5 To Check if Queue is empty(No Customer Data) \n 6 To Know the Size(No of Customers)\n 7 Press to Deposit/Withdraw Amount:");
+      var userChoice: Int = readInt();
+      userChoice match {
+        case 1 => {
+          println("Enter Customer Name:");
+          //          var data:Int=readInt();
+          var data: String = readLine();
+
+          println("Enter the Current Amount:");
+          var bal: Int = readInt();
+
+          obj.enQueue(data, bal);
+        }
+        case 2 => {
+          obj.deQueue();
+
+        }
+        case 3 => {
+          obj.printQueue();
+        }
+        case 4 => {
+          println("Enter 1 to exit :");
+          choice = readInt();
+          //        break;
+        }
+        case 5 => {
+          obj.isEmpty();
+        }
+        case 6 => {
+          println("The Size of Queue is :" + obj.size());
+        }
+        case 7=>{
+        println("Enter the name:");
+          var getData:String=readLine();
+          obj.withdraw_fun(getData);
+
+
+        }
+        case _ => {
+          print("Hey it's wrong choice");
+        }
+      }
+
+      println("Thank you !!!");
+    }
+  }}
