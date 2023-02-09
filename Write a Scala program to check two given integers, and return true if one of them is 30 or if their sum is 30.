@@ -1,0 +1,35 @@
+//Write a Scala program to check two given integers, and return true if one of them is 30 or if their sum is 30.
+
+object FourthProblem {
+
+  def main(args:Array[String])={
+
+
+    println("Enter first number:");
+
+    var x:Int=scala.io.StdIn.readInt();
+
+    println("Enter sec number:");
+    var y:Int=scala.io.StdIn.readInt();
+
+
+    //first check
+
+    if (x==30 || y==30){
+
+      println("One of them is 30 !!! Check passed !!");
+    }
+
+
+    //second check
+
+    else if((x+y)==30){
+
+      println("Sum of "+x+" "+y+" is 30. Check passed !!!");
+    }else{
+
+      println("Check failed !!!");
+    }
+  }
+
+}
