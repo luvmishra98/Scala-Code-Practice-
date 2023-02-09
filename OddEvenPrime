@@ -1,0 +1,38 @@
+//This program checks if the given number is even odd or Prime.
+
+
+object OddEvenPrime {
+
+
+  def main(args:Array[String])={
+
+    println("Enter a number:");
+
+    var x:Int=scala.io.StdIn.readInt();
+
+    if (x%2==0){
+      println(x+"is even\n")
+    }else{
+
+      println(x+"is odd\n")
+    }
+
+    var temp:Int=x/2;
+    var flag:Int=0;
+    for (i<-2 to (temp-1)){
+
+      if(x%i==0){
+        flag=1;
+      }
+    }
+
+    if(flag==0){
+
+      println(x+"is Prime");
+    }else{
+      printf(x+"is not Prime!!!");
+    }
+
+  }
+
+}
