@@ -1,0 +1,41 @@
+// This Program illustrate use of Array with Objects
+
+
+class Customer(p_name:String,p_bal:Int){
+var name:String=p_name;
+  var bal:Int=p_bal;
+
+  def display(): Unit ={
+
+    println("Customer Name:"+name+"   Current Balance :"+bal);
+
+  }
+
+
+
+
+
+}
+
+
+object ArrayOfObject {
+
+
+  def main(args:Array[String])={
+  var data:Array[Customer]=new Array[Customer](3);
+
+    data(0)=new Customer("Love",2000);
+    data(1)=new Customer("Kush",3000);
+    data(2)=new Customer("Darshan",2000);
+
+
+    for (i<- 0 to 2){
+
+      print(data(i).display());
+    }
+
+
+
+  }
+
+}
