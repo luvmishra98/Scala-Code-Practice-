@@ -1,0 +1,28 @@
+//This program shows the maximum number between three random user entered number 
+
+
+import scala.io.StdIn._;
+
+object MaxOf2 {
+
+
+  def main(args:Array[String]):Unit={
+    var x:Int=readLine("Enter first number :").toInt;
+    var y:Int=readLine("Enter second number :").toInt;
+
+    var z:Int=readLine("Enter third number :").toInt;
+
+    if(x>y && x>z){
+      print(x+"is bigger");
+    }else if(x==y && x==z){
+      print(x+"is equal to "+y+"and both are equal to "+z);
+    }else if (y>x && y>z){
+      print(y+"is bigger");
+    }else{
+      print(z+"is bigger");
+    }
+
+
+  }
+
+}
