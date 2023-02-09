@@ -1,0 +1,25 @@
+//Write a Scala program to get the absolute difference between n and 51. If n is greater than 51 return triple the absolute difference
+
+object DiffProblem {
+
+
+  def main(args:Array[String])={
+    print("Enter any number:")
+    var n:Int=scala.io.StdIn.readInt();
+    var return_val=0;
+
+    if(n>51){
+      return_val=3*(n-51);
+    }
+
+//
+//    100-51=49*3=147
+
+    println("Ans is :"+return_val);
+
+
+
+
+  }
+
+}
