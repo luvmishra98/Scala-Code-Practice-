@@ -1,0 +1,16 @@
+//Write a Scala program to compute the sum of the two given integer values. If the two values are the same, then return triples their sum.
+
+object SumOf2 {
+
+  def main(args:Array[String])={
+
+
+    println("Enter two numbers:");
+
+    var x:Int=scala.io.StdIn.readInt();
+    var y:Int=scala.io.StdIn.readInt();
+    var sum=x+y;
+    println("The sum of two numbers is:->"+sum);
+  }
+
+}
