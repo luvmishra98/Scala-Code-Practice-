@@ -1,0 +1,27 @@
+//Write a Scala program to check a given integer and return true if it is within 20 of 100 or 300
+
+object RangeProblem {
+
+  def main(args:Array[String]): Unit ={
+
+    println("Enter a number :");
+
+    var x:Int=scala.io.StdIn.readInt();
+
+
+    //20-100
+    //100-300
+    //20-300
+
+    if (x>=20 && x<=100){
+      println("Given Integer is between 20 and 100");
+
+    }else if(x>=100 && x<=300){
+      println("Given Integer is between 100 to 300");
+    }else{
+      println("Out of Range !!!");
+    }
+
+  }
+
+}
